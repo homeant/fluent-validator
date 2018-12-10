@@ -1,0 +1,32 @@
+# maven #
+target
+logs
+
+# eclipse #
+.settings
+.project
+.classpath
+.log
+
+# windows #
+Thumbs.db
+
+# Mac #
+.DS_Store
+
+# Package Files #
+*.war
+*.ear
+
+# idea #
+*.iml
+.idea/
+overlays
+bin
+
+# node #
+node_modules
+
+# bower $
+
+bower_components
