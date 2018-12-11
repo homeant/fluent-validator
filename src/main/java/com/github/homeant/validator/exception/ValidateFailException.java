@@ -30,7 +30,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @EqualsAndHashCode(callSuper=false)
-@NoArgsConstructor
 public class ValidateFailException extends RuntimeException{
 
 	private static final long serialVersionUID = 6113950199369314904L;

@@ -73,7 +73,7 @@ public class ValidatorTest {
 	}
 
 	@Configuration
-	@ComponentScan(basePackages = "xin.guaika.cloud")
+	@ComponentScan(basePackages = "com.github.homeant")
 	@EnableAutoConfiguration
 	public static class Config {
 
