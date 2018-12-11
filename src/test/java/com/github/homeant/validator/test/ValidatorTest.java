@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.test;
+package com.github.homeant.validator.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,10 +31,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.github.homeant.validator.exception.ValidateFailException;
+import com.github.homeant.validator.test.model.User;
+import com.github.homeant.validator.test.service.IUserService;
+
 import lombok.extern.slf4j.Slf4j;
-import xin.guaika.cloud.validator.exception.ValidateFailException;
-import xin.guaika.cloud.validator.test.model.User;
-import xin.guaika.cloud.validator.test.service.IUserService;
 
 /**
  * @author junchen junchen1314@foxmail.com

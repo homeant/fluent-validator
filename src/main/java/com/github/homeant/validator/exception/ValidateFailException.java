@@ -13,25 +13,39 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.test.model;
+package com.github.homeant.validator.exception;
 
-import java.io.Serializable;
+import java.util.List;
 
-import javax.validation.constraints.NotNull;
+import com.baidu.unbiz.fluentvalidator.ValidationError;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
+ * 校验异常类
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-10 16:39:49
+ * @Data 2018-12-06 16:40:30
  */
 @Data
-public class User implements Serializable{
-	
-	private static final long serialVersionUID = -1847374915028769973L;
+@EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor
+public class ValidateFailException extends RuntimeException{
 
-	@NotNull
-	private String username;
+	private static final long serialVersionUID = 6113950199369314904L;
 	
-	private String password;
+	private List<ValidationError> errors;
+	
+	public ValidateFailException(String message) {
+		super(message);
+	}
+	
+	public ValidateFailException(Throwable e) {
+		super(e);
+	}
+	
+	public ValidateFailException(String message,Throwable e) {
+		super(message, e);
+	}
 }

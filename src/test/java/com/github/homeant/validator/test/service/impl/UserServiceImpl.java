@@ -13,26 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator;
+package com.github.homeant.validator.test.service.impl;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Service;
 
-
-import lombok.Data;
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
+import com.github.homeant.validator.test.model.User;
+import com.github.homeant.validator.test.service.IUserService;
 
 /**
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-10 14:43:12
+ * @Data 2018-12-10 16:42:03
  */
-@Data
-@ConfigurationProperties(prefix = ValidatorProperties.PREFIX)
-public class ValidatorProperties {
+@Service
+public class UserServiceImpl implements IUserService{
+
+	@Override
+	public void installUser(@FluentValid() User user) {
+		
+	}
 	
-	public static final String PREFIX = "validator";
-	
-	private Boolean enable = true;
-	
-	private Boolean failFast = true;
-	
-	private String [] beanNames = new String[0];
 }

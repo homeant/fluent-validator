@@ -13,39 +13,20 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.exception;
+package com.github.homeant.validator.i18n;
 
 import java.util.List;
 
-import com.baidu.unbiz.fluentvalidator.ValidationError;
+import com.github.homeant.i18n.domain.MessageResource;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
- * 校验异常类
+ * 动态国际化需要实现此接口
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-06 16:40:30
+ * @Data 2018-12-07 11:38:01
  */
-@Data
-@EqualsAndHashCode(callSuper=false)
-@NoArgsConstructor
-public class ValidateFailException extends RuntimeException{
-
-	private static final long serialVersionUID = 6113950199369314904L;
-	
-	private List<ValidationError> errors;
-	
-	public ValidateFailException(String message) {
-		super(message);
-	}
-	
-	public ValidateFailException(Throwable e) {
-		super(e);
-	}
-	
-	public ValidateFailException(String message,Throwable e) {
-		super(message, e);
+public interface IMessageService {
+	default List<MessageResource> getAllMessage(Object ... args) {
+		return null;
 	}
 }

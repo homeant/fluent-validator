@@ -13,9 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.test.service;
+package com.github.homeant.validator.test.service;
 
-import xin.guaika.cloud.validator.test.model.User;
+import com.github.homeant.validator.test.model.User;
 
 /**
  * @author junchen junchen1314@foxmail.com

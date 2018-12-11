@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator;
+package com.github.homeant.validator;
 
 import com.baidu.unbiz.fluentvalidator.Composable;
 import com.baidu.unbiz.fluentvalidator.FluentValidator;

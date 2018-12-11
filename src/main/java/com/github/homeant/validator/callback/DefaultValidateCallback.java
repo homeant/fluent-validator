@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.callback;
+package com.github.homeant.validator.callback;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.ValidationError;
 import com.baidu.unbiz.fluentvalidator.Validator;
 import com.baidu.unbiz.fluentvalidator.validator.element.ValidatorElementList;
+import com.github.homeant.validator.exception.ValidateFailException;
 
 import lombok.extern.slf4j.Slf4j;
-import xin.guaika.cloud.validator.exception.ValidateFailException;
 
 /**
  * 默认校验回调

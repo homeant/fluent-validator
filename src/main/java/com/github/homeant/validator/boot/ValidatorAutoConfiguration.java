@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.boot;
+package com.github.homeant.validator.boot;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
@@ -34,12 +34,13 @@ import org.springframework.core.env.Environment;
 
 import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
+import com.github.homeant.validator.ValidatorProperties;
+import com.github.homeant.validator.callback.DefaultValidateCallback;
+import com.github.homeant.validator.i18n.IMessageService;
+import com.github.homeant.validator.i18n.MessageDynamicResource;
+
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import xin.guaika.cloud.validator.ValidatorProperties;
-import xin.guaika.cloud.validator.callback.DefaultValidateCallback;
-import xin.guaika.cloud.validator.i18n.IMessageService;
-import xin.guaika.cloud.validator.i18n.MessageDynamicResource;
 
 /**
  * validator auto config

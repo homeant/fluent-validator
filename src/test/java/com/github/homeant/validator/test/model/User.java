@@ -13,28 +13,25 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.i18n.domain;
+package com.github.homeant.validator.test.model;
 
 import java.io.Serializable;
+
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 /**
- * 国际化实体对象
- * 
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-10 13:58:57
+ * @Data 2018-12-10 16:39:49
  */
 @Data
-public class MessageResource implements Serializable {
+public class User implements Serializable{
+	
+	private static final long serialVersionUID = -1847374915028769973L;
 
-	private static final long serialVersionUID = 5085324419668041501L;
-
-	private String message;
-
-	private String code;
-
-	private String language;
-
-	private String site;
+	@NotNull
+	private String username;
+	
+	private String password;
 }

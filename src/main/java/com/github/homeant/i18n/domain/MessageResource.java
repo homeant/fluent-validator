@@ -13,20 +13,28 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.i18n;
+package com.github.homeant.i18n.domain;
 
-import java.util.List;
+import java.io.Serializable;
 
-import xin.guaika.cloud.validator.i18n.domain.MessageResource;
-
+import lombok.Data;
 
 /**
- * 动态国际化需要实现此接口
+ * 国际化实体对象
+ * 
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-07 11:38:01
+ * @Data 2018-12-10 13:58:57
  */
-public interface IMessageService {
-	default List<MessageResource> getAllMessage(Object ... args) {
-		return null;
-	}
+@Data
+public class MessageResource implements Serializable {
+
+	private static final long serialVersionUID = 5085324419668041501L;
+
+	private String message;
+
+	private String code;
+
+	private String language;
+
+	private String site;
 }

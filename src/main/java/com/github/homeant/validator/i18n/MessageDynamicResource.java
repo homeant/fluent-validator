@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package xin.guaika.cloud.validator.i18n;
+package com.github.homeant.validator.i18n;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -29,10 +29,10 @@ import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 
+import com.github.homeant.i18n.domain.MessageResource;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import xin.guaika.cloud.validator.i18n.domain.MessageResource;
 
 /**
  * 动态国际化
