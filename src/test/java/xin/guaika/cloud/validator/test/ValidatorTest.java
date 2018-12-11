@@ -15,9 +15,10 @@
  */
 package xin.guaika.cloud.validator.test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-
-import javax.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,11 +28,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
-
-
 
 import lombok.extern.slf4j.Slf4j;
 import xin.guaika.cloud.validator.exception.ValidateFailException;
@@ -47,40 +45,36 @@ import xin.guaika.cloud.validator.test.service.IUserService;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ValidatorTest {
 
-	@Autowired
-	private Validator validator;
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	@Before
-	public void init() {
-		log.debug("validator:{}",validator);
+	public void init() throws Exception {
 		log.debug("init ...");
 	}
-	
+
 	@Test
 	public void test() {
 		try {
 			User user = new User();
 			userService.installUser(user);
 		} catch (Exception e) {
-			if(e instanceof ValidateFailException) {
-				ValidateFailException exception = (ValidateFailException)e;
-				exception.getErrors().forEach(r->{
-					log.debug("errors:{}{}",r.getField(),r.getErrorMsg());
+			if (e instanceof ValidateFailException) {
+				ValidateFailException exception = (ValidateFailException) e;
+				exception.getErrors().forEach(r -> {
+					log.debug("errors:{}{}", r.getField(), r.getErrorMsg());
 				});
-			}else {
-				log.debug("",e);
+			} else {
+				log.debug("", e);
 			}
 		}
-		
 	}
-	
+
 	@Configuration
-	@ComponentScan(basePackages="xin.guaika.cloud")
+	@ComponentScan(basePackages = "xin.guaika.cloud")
 	@EnableAutoConfiguration
 	public static class Config {
-		
+
 	}
 }

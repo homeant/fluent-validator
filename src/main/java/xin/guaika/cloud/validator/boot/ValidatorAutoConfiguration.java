@@ -18,7 +18,6 @@ package xin.guaika.cloud.validator.boot;
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.Validator;
-
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -32,48 +31,45 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+
 import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
-
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import xin.guaika.cloud.validator.IValidator;
 import xin.guaika.cloud.validator.ValidatorProperties;
 import xin.guaika.cloud.validator.callback.DefaultValidateCallback;
 import xin.guaika.cloud.validator.i18n.IMessageService;
 import xin.guaika.cloud.validator.i18n.MessageDynamicResource;
-import xin.guaika.cloud.validator.impl.DefaultValidator;
-import xin.guaika.cloud.validator.rule.domain.IRuleService;
-
 
 /**
  * validator auto config
+ * 
  * @author junchen junchen1314@foxmail.com
  * @Data 2018-12-10 14:41:18
  */
 @Data
 @Slf4j
 @Configuration
-@ConditionalOnProperty(value=ValidatorProperties.PREFIX+".enable", matchIfMissing = true)
+@ConditionalOnProperty(value = ValidatorProperties.PREFIX + ".enable", matchIfMissing = true)
 @ConditionalOnClass(name = "xin.guaika.cloud.validator.IValidator")
 @AutoConfigureAfter(MessageSourceAutoConfiguration.class)
 @EnableConfigurationProperties(ValidatorProperties.class)
 public class ValidatorAutoConfiguration {
-	
+
 	private final ValidatorProperties validatorProperties;
-	
+
 	private static MessageSource messageSource;
-	
-	
+
 	@PostConstruct
 	public void init() {
-		if(log.isDebugEnabled()) {
+		if (log.isDebugEnabled()) {
 			log.debug("Init Validator");
 		}
 	}
-	
+
 	/**
 	 * 国际化资源
+	 * 
 	 * @param messageService
 	 * @return MessageSource
 	 * @author junchen junchen1314@foxmail.com
@@ -81,38 +77,17 @@ public class ValidatorAutoConfiguration {
 	 */
 	@Bean
 	@ConditionalOnBean(IMessageService.class)
-	public MessageSource messageSource(IMessageService messageService){
-		//MessageSourceAutoConfiguration configuration = new MessageSourceAutoConfiguration();
+	public MessageSource messageSource(IMessageService messageService) {
+		// MessageSourceAutoConfiguration configuration = new
+		// MessageSourceAutoConfiguration();
 		MessageDynamicResource resource = new MessageDynamicResource(messageService);
 		resource.setParentMessageSource(messageSource);
 		return resource;
 	}
-	
-	/**
-	 * 规则服务
-	 * @return IRuleService
-	 * @author junchen junchen1314@foxmail.com
-	 * @Data 2018-12-10 16:08:40
-	 */
-	@Bean
-	@ConditionalOnMissingBean(IRuleService.class)
-	public IRuleService ruleService() {
-		return new IRuleService() {};
-	}
-	
-	/**
-	 * 通用校验器
-	 * @return IValidator<?>
-	 * @author junchen junchen1314@foxmail.com
-	 * @Data 2018-12-10 16:04:32
-	 */
-	@Bean
-	public IValidator<?> validator(IRuleService ruleService) {
-		return new DefaultValidator(ruleService);
-	}
-	
+
 	/**
 	 * 校验回调
+	 * 
 	 * @return ValidateCallback
 	 * @author junchen junchen1314@foxmail.com
 	 * @Data 2018-12-10 16:04:11
@@ -122,9 +97,10 @@ public class ValidatorAutoConfiguration {
 	public ValidateCallback callback() {
 		return new DefaultValidateCallback();
 	}
-	
+
 	/**
 	 * 方法拦截器
+	 * 
 	 * @param validator
 	 * @param callback
 	 * @return FluentValidateInterceptor
@@ -133,22 +109,22 @@ public class ValidatorAutoConfiguration {
 	 */
 	@Bean
 	@ConditionalOnBean(ValidateCallback.class)
-	public FluentValidateInterceptor fluentValidateInterceptor(@Valid Validator validator,ValidateCallback callback) {
+	public FluentValidateInterceptor fluentValidateInterceptor(@Valid Validator validator, ValidateCallback callback) {
 		FluentValidateInterceptor interceptor = new FluentValidateInterceptor();
-		interceptor.setLocale("zh_CN");
+		//interceptor.setLocale("zh_CN");
 		interceptor.setValidator(validator);
 		interceptor.setCallback(callback);
 		return interceptor;
 	}
-	
+
 	@Bean
-    public BeanNameAutoProxyCreator autoProxyCreator(Environment environment) {
+	public BeanNameAutoProxyCreator autoProxyCreator(Environment environment) {
 		boolean proxyTargetClass = environment.getProperty("spring.aop.proxy-target-class", Boolean.class, false);
-        BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();
-        autoProxyCreator.setProxyTargetClass(proxyTargetClass);
-        autoProxyCreator.setBeanNames(validatorProperties.getBeanNames());
-        autoProxyCreator.setInterceptorNames("fluentValidateInterceptor");
-        return autoProxyCreator;
-    }
-	
+		BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();
+		autoProxyCreator.setProxyTargetClass(proxyTargetClass);
+		autoProxyCreator.setBeanNames(validatorProperties.getBeanNames());
+		autoProxyCreator.setInterceptorNames("fluentValidateInterceptor");
+		return autoProxyCreator;
+	}
+
 }
