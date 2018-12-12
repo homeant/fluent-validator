@@ -18,6 +18,7 @@ package com.github.homeant.validator.test.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
+import com.github.homeant.validator.IValidator;
 import com.github.homeant.validator.test.model.User;
 import com.github.homeant.validator.test.service.IUserService;
 
@@ -29,7 +30,7 @@ import com.github.homeant.validator.test.service.IUserService;
 public class UserServiceImpl implements IUserService{
 
 	@Override
-	public void installUser(@FluentValid() User user) {
+	public void installUser(@FluentValid({IValidator.class}) User user) {
 		
 	}
 	

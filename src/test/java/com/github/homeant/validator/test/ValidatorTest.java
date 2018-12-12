@@ -18,7 +18,7 @@ package com.github.homeant.validator.test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,11 +27,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.github.homeant.i18n.domain.MessageResource;
 import com.github.homeant.validator.exception.ValidateFailException;
+import com.github.homeant.validator.i18n.IMessageService;
 import com.github.homeant.validator.test.model.User;
 import com.github.homeant.validator.test.service.IUserService;
 
@@ -76,6 +79,16 @@ public class ValidatorTest {
 	@ComponentScan(basePackages = "com.github.homeant")
 	@EnableAutoConfiguration
 	public static class Config {
-
+		
+		@Bean
+		public IMessageService messageService() {
+			return new IMessageService() {
+				//jdbc or rpc
+				@Override
+				public List<MessageResource> getAllMessage(Object... args) {
+					return null;
+				}
+			};
+		}
 	}
 }
