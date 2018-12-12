@@ -52,7 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @ConditionalOnProperty(value = ValidatorProperties.PREFIX + ".enable", matchIfMissing = true)
-@ConditionalOnClass(name = "xin.guaika.cloud.validator.IValidator")
+@ConditionalOnClass(name = "com.github.homeant.validator.IValidator")
 @AutoConfigureAfter(MessageSourceAutoConfiguration.class)
 @EnableConfigurationProperties(ValidatorProperties.class)
 public class ValidatorAutoConfiguration {
