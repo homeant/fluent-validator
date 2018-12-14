@@ -18,20 +18,22 @@ package com.github.homeant.validator.test.service.impl;
 import org.springframework.stereotype.Service;
 
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
-import com.github.homeant.validator.IValidator;
 import com.github.homeant.validator.test.model.User;
 import com.github.homeant.validator.test.service.IUserService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author junchen junchen1314@foxmail.com
  * @Data 2018-12-10 16:42:03
  */
+@Slf4j
 @Service
 public class UserServiceImpl implements IUserService{
-
+	
 	@Override
-	public void installUser(@FluentValid({IValidator.class}) User user) {
-		
+	public void installUser(@FluentValid User user) {
+		log.debug("user:{}",user);
 	}
 	
 }

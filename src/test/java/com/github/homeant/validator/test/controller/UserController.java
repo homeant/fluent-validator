@@ -13,25 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.test.model;
+package com.github.homeant.validator.test.controller;
 
-import java.io.Serializable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotNull;
-
-import lombok.Data;
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
+import com.github.homeant.validator.test.model.User;
 
 /**
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-10 16:39:49
+ * @Data 2018-12-14 16:15:52
  */
-@Data
-public class User implements Serializable{
+@RestController
+public class UserController {
 	
-	private static final long serialVersionUID = -1847374915028769973L;
-
-	@NotNull(message="{NotBlank.message}")
-	private String username;
-	
-	private String password;
+	@PostMapping("add")
+	public ResponseEntity<Object> add(@FluentValid User user){
+		return ResponseEntity.ok(user);
+	}
 }

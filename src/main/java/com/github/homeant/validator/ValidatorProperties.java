@@ -33,6 +33,4 @@ public class ValidatorProperties {
 	private Boolean enable = true;
 	
 	private Boolean failFast = true;
-	
-	private String [] beanNames = new String[0];
 }
