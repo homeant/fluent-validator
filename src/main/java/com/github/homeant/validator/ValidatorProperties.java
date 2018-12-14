@@ -31,6 +31,4 @@ public class ValidatorProperties {
 	public static final String PREFIX = "validator";
 	
 	private Boolean enable = true;
-	
-	private Boolean failFast = true;
 }

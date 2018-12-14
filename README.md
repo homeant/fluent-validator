@@ -33,8 +33,7 @@ pubcli class UserValidator extends Validator{
 
 ```yaml
 validator:
-  beanNames: 
-    - '*ServiceImpl' ## 需要拦截的bean
+  enable: true
 ```
 
 
