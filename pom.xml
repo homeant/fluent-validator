@@ -55,8 +55,27 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.baidu.unbiz</groupId>
+				<artifactId>fluent-validator-spring</artifactId>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+				</exclusions>
+				<version>${fluent-validator.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -175,5 +194,6 @@
 
 	<modules>
 		<module>spring-boot-starter-fluent-validator</module>
+		<module>fluent-validator-core</module>
 	</modules>
 </project>

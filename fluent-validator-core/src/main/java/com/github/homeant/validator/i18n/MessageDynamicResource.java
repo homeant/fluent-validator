@@ -29,7 +29,7 @@ import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 
-import com.github.homeant.i18n.domain.MessageResource;
+import com.github.homeant.validator.domain.MessageResource;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

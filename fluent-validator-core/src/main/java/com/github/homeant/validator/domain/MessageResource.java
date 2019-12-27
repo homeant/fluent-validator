@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.i18n.domain;
+package com.github.homeant.validator.domain;
 
 import java.io.Serializable;
 

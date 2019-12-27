@@ -17,7 +17,7 @@ package com.github.homeant.validator.i18n;
 
 import java.util.List;
 
-import com.github.homeant.i18n.domain.MessageResource;
+import com.github.homeant.validator.domain.MessageResource;
 
 
 /**

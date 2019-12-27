@@ -32,7 +32,7 @@ import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
 import com.baidu.unbiz.fluentvalidator.support.MessageSupport;
 import com.github.homeant.validator.IValidator;
-import com.github.homeant.validator.ValidatorBeanPostProcessor;
+import com.github.homeant.validator.spring.ValidatorBeanPostProcessor;
 import com.github.homeant.validator.ValidatorProperties;
 import com.github.homeant.validator.callback.DefaultValidateCallback;
 import com.github.homeant.validator.i18n.IMessageService;

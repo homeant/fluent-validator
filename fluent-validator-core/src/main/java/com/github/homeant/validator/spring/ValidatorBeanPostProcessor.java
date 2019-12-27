@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator;
+package com.github.homeant.validator.spring;
 
 import java.lang.annotation.Annotation;
 
@@ -24,7 +24,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
-import com.github.homeant.validator.spring.aop.ValidatorPointcutAdvisor;
+import com.github.homeant.validator.spring.ValidatorPointcutAdvisor;
 
 import lombok.Getter;
 import lombok.Setter;
