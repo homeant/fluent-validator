@@ -4,13 +4,11 @@
 	<groupId>com.github.homeant</groupId>
 	<artifactId>fluent-validator</artifactId>
 	<version>1.0.1.RELEASE</version>
-	<modules>
-		<module>spring-boot-starter-fluent-validator</module>
-	</modules>
+
 	<packaging>pom</packaging>
-	<name>spring-boot-starter-fluent-validator</name>
-	<description>springboot start fluent-validator</description>
-	<url>https://github.com/homeant/spring-boot-starter-fluent-validator</url>
+	<name>fluent-validator</name>
+	<description>fluent-validator</description>
+	<url>https://github.com/homeant/fluent-validator</url>
 
 	<licenses>
 		<license>
@@ -21,9 +19,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/homeant/spring-boot-starter-fluent-validator</url>
-		<connection>scm:git:git@github.com:homeant/spring-boot-starter-fluent-validator.git</connection>
-		<developerConnection>scm:git:git@github.com:homeant/spring-boot-starter-fluent-validator.git</developerConnection>
+		<url>https://github.com/homeant/fluent-validator</url>
+		<connection>scm:git:git@github.com:homeant/fluent-validator.git</connection>
+		<developerConnection>scm:git:git@github.com:homeant/fluent-validator.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -59,68 +57,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-		</dependency>
-
-		<!-- @ConfigurationProperties annotation processing (metadata for IDEs) -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>com.baidu.unbiz</groupId>
-			<artifactId>fluent-validator-spring</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-			<version>${fluent-validator.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>7.1.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
 	<build>
 		<pluginManagement>
@@ -236,4 +172,8 @@
 			</build>
 		</profile>
 	</profiles>
+
+	<modules>
+		<module>spring-boot-starter-fluent-validator</module>
+	</modules>
 </project>
