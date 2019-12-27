@@ -15,6 +15,7 @@
  */
 package com.github.homeant.validator.boot;
 
+import com.github.homeant.validator.core.processor.FluentValidatorPostProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -31,12 +32,12 @@ import org.springframework.core.env.Environment;
 import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
 import com.baidu.unbiz.fluentvalidator.support.MessageSupport;
-import com.github.homeant.validator.IValidator;
-import com.github.homeant.validator.spring.ValidatorBeanPostProcessor;
+import com.github.homeant.validator.core.IValidator;
+import com.github.homeant.validator.core.spring.ValidatorBeanPostProcessor;
 import com.github.homeant.validator.ValidatorProperties;
-import com.github.homeant.validator.callback.DefaultValidateCallback;
-import com.github.homeant.validator.i18n.IMessageService;
-import com.github.homeant.validator.i18n.MessageDynamicResource;
+import com.github.homeant.validator.core.callback.DefaultValidateCallback;
+import com.github.homeant.validator.core.i18n.IMessageService;
+import com.github.homeant.validator.core.i18n.MessageDynamicResource;
 
 import lombok.Data;
 
@@ -49,7 +50,7 @@ import lombok.Data;
 @Data
 @Configuration
 @ConditionalOnClass(value= {IValidator.class,com.baidu.unbiz.fluentvalidator.Validator.class})
-@ConditionalOnProperty(value = ValidatorProperties.PREFIX + ".enable", matchIfMissing = true)
+@ConditionalOnProperty(prefix = ValidatorProperties.PREFIX, value ="enable", matchIfMissing = true,havingValue = "true")
 @AutoConfigureBefore({MessageSourceAutoConfiguration.class})
 @EnableConfigurationProperties(ValidatorProperties.class)
 public class ValidatorAutoConfiguration {
@@ -101,6 +102,7 @@ public class ValidatorAutoConfiguration {
 	@ConditionalOnBean({ValidateCallback.class})
 	public FluentValidateInterceptor fluentValidateInterceptor(ValidateCallback callback) {
 		FluentValidateInterceptor validateInterceptor = new FluentValidateInterceptor();
+		validateInterceptor.setFluentValidatorPostProcessor(new FluentValidatorPostProcessor());
         validateInterceptor.setCallback(callback);
         validateInterceptor.setHibernateDefaultErrorCode(10000);
         return validateInterceptor;

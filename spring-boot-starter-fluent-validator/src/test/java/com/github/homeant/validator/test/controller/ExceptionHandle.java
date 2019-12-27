@@ -21,7 +21,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.github.homeant.validator.exception.ValidateFailException;
+import com.github.homeant.validator.core.exception.ValidateFailException;
 
 import lombok.extern.slf4j.Slf4j;
 

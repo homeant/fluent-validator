@@ -13,20 +13,37 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.i18n;
+package com.github.homeant.validator.core.exception;
 
 import java.util.List;
 
-import com.github.homeant.validator.domain.MessageResource;
+import com.baidu.unbiz.fluentvalidator.ValidationError;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
- * 动态国际化需要实现此接口
+ * 校验异常类
  * @author junchen junchen1314@foxmail.com
- * @Data 2018-12-07 11:38:01
+ * @Data 2018-12-06 16:40:30
  */
-public interface IMessageService {
-	default List<MessageResource> getAllMessage(Object... args) {
-		return null;
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class ValidateFailException extends RuntimeException{
+
+	private static final long serialVersionUID = 6113950199369314904L;
+	
+	private List<ValidationError> errors;
+	
+	public ValidateFailException(String message) {
+		super(message);
+	}
+	
+	public ValidateFailException(Throwable e) {
+		super(e);
+	}
+	
+	public ValidateFailException(String message,Throwable e) {
+		super(message, e);
 	}
 }

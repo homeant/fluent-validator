@@ -57,7 +57,7 @@ public IMessageService messageService() {
 
 ## use of controller 
 
-当前版本如果对controller 进行处理需要自己定义**@RestControllerAdvice**,，异常类为**com.github.homeant.validator.exception.ValidateFailException**
+当前版本如果对controller 进行处理需要自己定义**@RestControllerAdvice**,，异常类为**com.github.homeant.validator.core.exception.ValidateFailException**
 
 ```java
 @RestControllerAdvice

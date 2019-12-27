@@ -28,7 +28,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = ValidatorProperties.PREFIX)
 public class ValidatorProperties {
 	
-	public static final String PREFIX = "validator";
+	public static final String PREFIX = "fluent-validator";
 	
 	private Boolean enable = true;
 }

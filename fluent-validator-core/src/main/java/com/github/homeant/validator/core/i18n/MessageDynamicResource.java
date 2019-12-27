@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.i18n;
+package com.github.homeant.validator.core.i18n;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.springframework.context.support.AbstractMessageSource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 
-import com.github.homeant.validator.domain.MessageResource;
+import com.github.homeant.validator.core.domain.MessageResource;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
