@@ -15,6 +15,7 @@
  */
 package com.github.homeant.validator.test.service.impl;
 
+import com.github.homeant.validator.test.validator.CommonValidator;
 import org.springframework.stereotype.Service;
 
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
@@ -32,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements IUserService{
 	
 	@Override
-	public void installUser(@FluentValid User user) {
+	public void installUser(@FluentValid({CommonValidator.class}) User user) {
 		log.debug("user:{}",user);
 	}
 	

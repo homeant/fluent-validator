@@ -16,6 +16,7 @@
 package com.github.homeant.validator.test.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +31,7 @@ import com.github.homeant.validator.test.model.User;
 public class UserController {
 	
 	@PostMapping("add")
-	public ResponseEntity<Object> add(@FluentValid User user){
+	public ResponseEntity<Object> add(@FluentValid @Validated User user){
 		return ResponseEntity.ok(user);
 	}
 }

@@ -30,7 +30,7 @@ public class User implements Serializable{
 	
 	private static final long serialVersionUID = -1847374915028769973L;
 
-	@NotNull(message="{NotBlank.message}")
+	//@NotNull(message="{NotBlank.message}")
 	private String username;
 	
 	private String password;

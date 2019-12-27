@@ -27,7 +27,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.validation.Validator;
@@ -47,7 +47,7 @@ public class ValidatorTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private Validator validator;
 
-	@BeforeTest
+	@BeforeMethod
 	public void init() throws Exception {
 		log.debug("validator:{}",validator);
 		log.debug("init ...");

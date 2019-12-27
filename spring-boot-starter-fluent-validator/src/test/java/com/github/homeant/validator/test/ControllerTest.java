@@ -30,8 +30,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.validation.Validator;
 
 /**
  * @author junchen junchen1314@foxmail.com
@@ -43,10 +45,13 @@ public class ControllerTest extends AbstractTestNGSpringContextTests {
 	
 	@Autowired
     private WebApplicationContext context;
+
+	@Autowired
+	private Validator validator;
 	
 	MockMvc mockMvc;
 	
-	@BeforeTest
+	@BeforeMethod
 	public void before() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
