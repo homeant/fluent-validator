@@ -1,5 +1,0 @@
-logging:
-  level:
-    com:
-      github:
-        homeant: DEBUG

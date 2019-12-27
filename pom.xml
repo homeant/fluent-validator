@@ -2,8 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.homeant</groupId>
-	<artifactId>spring-boot-starter-fluent-validator</artifactId>
-	<version>1.0.0-M1</version>
+	<artifactId>fluent-validator</artifactId>
+	<version>1.0.1.RELEASE</version>
+	<modules>
+		<module>spring-boot-starter-fluent-validator</module>
+	</modules>
+	<packaging>pom</packaging>
 	<name>spring-boot-starter-fluent-validator</name>
 	<description>springboot start fluent-validator</description>
 	<url>https://github.com/homeant/spring-boot-starter-fluent-validator</url>
@@ -38,7 +42,7 @@
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
 		<java.version>1.8</java.version>
-		<spring-boot.version>1.5.16.RELEASE</spring-boot.version>
+		<spring-boot.version>2.2.1.RELEASE</spring-boot.version>
 		<fluent-validator.version>1.0.6</fluent-validator.version>
 	</properties>
 
@@ -98,6 +102,12 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.1.0</version>
+			<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -150,7 +160,6 @@
 								<goal>jar</goal>
 							</goals>
 							<configuration>
-								<additionalparam>-Xdoclint:none</additionalparam>
 								<doclint>none</doclint>
 							</configuration>
 						</execution>

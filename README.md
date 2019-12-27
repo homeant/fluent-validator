@@ -85,3 +85,10 @@ public class ExceptionHandle {
 ## use of service
 
 在非controller中使用，请自行捕获异常，并处理
+develop
+
+
+## 版本计划
+
+controller 层校验,将错误信息装载到**org.springframework.validation.BindingResult**中，和spring validator 使用方式统一
+
