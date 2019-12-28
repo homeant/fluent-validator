@@ -20,6 +20,8 @@ import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValidate;
 import lombok.Data;
 
 /**
@@ -36,6 +38,10 @@ public class User implements Serializable{
 	
 	private String password;
 
+	/**
+	 * 如果级联校验中有 {@link FluentValidate}，那么使用 {@link FluentValid}
+	 * 如果级联校验中没有 {@link FluentValidate},那么使用 {@link Valid}
+	 */
 	@NotNull(groups = Create.class)
 	@Valid
 	private UserInfo userInfo;
