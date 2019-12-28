@@ -1,12 +1,12 @@
 /**
  * Copyright (c) 2011-2014, junchen (junchen1314@foxmail.com).
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- *
+ * <p>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,6 +16,8 @@
 package com.github.homeant.validator.test;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.homeant.validator.test.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -42,32 +44,37 @@ import javax.validation.Validator;
 @Slf4j
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ControllerTest extends AbstractTestNGSpringContextTests {
-	
-	@Autowired
-    private WebApplicationContext context;
 
 	@Autowired
-	private Validator validator;
-	
+	private WebApplicationContext context;
+
+	@Autowired
+	private ObjectMapper mapper;
+
 	MockMvc mockMvc;
-	
+
 	@BeforeMethod
 	public void before() throws Exception {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
-	
+
 	@Test
 	public void test() throws Exception {
-	      MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/add").accept(MediaType.APPLICATION_JSON)).andReturn();
-	      log.debug("result:{}",mvcResult.getResponse().getContentAsString());
+		User user = new User();
+		MvcResult mvcResult =
+				mockMvc.perform(MockMvcRequestBuilders.post("/add")
+						.content(mapper.writeValueAsBytes(user))
+						.accept(MediaType.APPLICATION_JSON))
+						.andReturn();
+		log.debug("result:{}", mvcResult.getResponse().getContentAsString());
 	}
-	
+
 	@Configuration
 	@ComponentScan(basePackages = "com.github.homeant")
 	@EnableAutoConfiguration
 	public static class Config {
-		 
-		
+
+
 	}
-	
+
 }

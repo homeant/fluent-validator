@@ -33,23 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 public class ExceptionHandle {
 	
-	@ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Object> Handle(Exception e){
-		if(log.isErrorEnabled()) {
-			log.error("程序发生异常:",e);
-		}
-        if (e instanceof ValidateFailException){
-        	ValidateFailException exception = (ValidateFailException) e;
-        	return ResponseEntity.status(400).body(exception.getErrors());
-        }else if(e instanceof MethodArgumentNotValidException) {
-        	MethodArgumentNotValidException exception = (MethodArgumentNotValidException) e;
-        	StringBuffer buffer = new StringBuffer();
-        	exception.getBindingResult().getAllErrors().stream().forEach(r->{
-        		log.debug("error:{}",r);
-        		buffer.append(r.getDefaultMessage()+"/r/n");
-        	});
-        	return ResponseEntity.status(400).body(buffer.toString());
-        }
-        return ResponseEntity.status(400).body("error");
+	@ExceptionHandler(value = ValidateFailException.class)
+    public ResponseEntity<Object> Handle(ValidateFailException e){
+		return ResponseEntity.status(400).body(e.getErrors());
     }
 }

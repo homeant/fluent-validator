@@ -15,13 +15,14 @@
  */
 package com.github.homeant.validator.test.controller;
 
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
 import com.github.homeant.validator.test.model.User;
+
 
 /**
  * @author junchen junchen1314@foxmail.com
@@ -31,7 +32,12 @@ import com.github.homeant.validator.test.model.User;
 public class UserController {
 	
 	@PostMapping("add")
-	public ResponseEntity<Object> add(@FluentValid @Validated User user){
+	public ResponseEntity<Object> add(@FluentValid(groups = User.Create.class) @RequestBody User user){
+		return ResponseEntity.ok(user);
+	}
+
+	@PostMapping("add2")
+	public ResponseEntity<Object> add2(@FluentValid(groups = User.Update.class) @RequestBody User user){
 		return ResponseEntity.ok(user);
 	}
 }

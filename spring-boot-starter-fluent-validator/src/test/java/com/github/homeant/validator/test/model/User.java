@@ -17,6 +17,7 @@ package com.github.homeant.validator.test.model;
 
 import java.io.Serializable;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -30,8 +31,20 @@ public class User implements Serializable{
 	
 	private static final long serialVersionUID = -1847374915028769973L;
 
-	//@NotNull(message="{NotBlank.message}")
+	@NotNull
 	private String username;
 	
 	private String password;
+
+	@NotNull(groups = Create.class)
+	@Valid
+	private UserInfo userInfo;
+
+	public interface Create{
+
+	}
+
+	public interface Update{
+
+	}
 }

@@ -30,7 +30,11 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import javax.validation.executable.ExecutableValidator;
+import java.lang.reflect.Method;
+import java.util.Set;
 
 /**
  * @author junchen junchen1314@foxmail.com
@@ -68,6 +72,14 @@ public class ValidatorTest extends AbstractTestNGSpringContextTests {
 				log.debug("ex", e);
 			}
 		}
+	}
+
+	public void validator() throws NoSuchMethodException {
+		ExecutableValidator executableValidator = validator.forExecutables();
+		Method method = User.class
+				.getMethod("setUsername", String.class);
+		Set<ConstraintViolation<User>> violations
+				= executableValidator.validateParameters(new User(), method, new Object[]{});
 	}
 
 	@Configuration
