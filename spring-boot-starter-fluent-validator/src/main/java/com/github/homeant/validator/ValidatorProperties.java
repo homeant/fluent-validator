@@ -15,10 +15,17 @@
  */
 package com.github.homeant.validator;
 
+import com.google.common.collect.Lists;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 import lombok.Data;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @author junchen junchen1314@foxmail.com
@@ -31,4 +38,19 @@ public class ValidatorProperties {
 	public static final String PREFIX = "fluent-validator";
 	
 	private Boolean enable = true;
+
+	private String[] rulePaths = {"classpath*:validator/**/*.yml","classpath*:validator/**/*.yaml"};
+
+	public List<Resource> getResources() throws IOException {
+		List<Resource> resourceList = Lists.newArrayList();
+		if (rulePaths != null && rulePaths.length > 0) {
+			ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
+			for (int i = 0; i < rulePaths.length; i++) {
+				Resource[] resources = resourcePatternResolver.getResources(rulePaths[i]);
+				resourceList.addAll(Lists.newArrayList(resources));
+			}
+		}
+		return resourceList;
+	}
+
 }

@@ -16,7 +16,7 @@
 package com.github.homeant.validator.boot;
 
 import com.github.homeant.validator.core.processor.FluentValidatorPostProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.github.homeant.validator.core.spring.ValidatorSpecContext;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -41,6 +41,7 @@ import com.github.homeant.validator.core.i18n.MessageDynamicResource;
 import lombok.Data;
 
 import javax.validation.Validator;
+import java.io.IOException;
 
 /**
  * validator auto config
@@ -53,7 +54,7 @@ import javax.validation.Validator;
 @ConditionalOnClass(value = {com.baidu.unbiz.fluentvalidator.Validator.class})
 @ConditionalOnProperty(prefix = ValidatorProperties.PREFIX, value = "enable", matchIfMissing = true, havingValue = "true")
 @AutoConfigureBefore({MessageSourceAutoConfiguration.class})
-@EnableConfigurationProperties(ValidatorProperties.class)
+@EnableConfigurationProperties({ValidatorProperties.class})
 public class ValidatorAutoConfiguration {
 
 	private final ValidatorProperties validatorProperties;
@@ -84,6 +85,10 @@ public class ValidatorAutoConfiguration {
 		return support;
 	}
 
+	@Bean(initMethod = "init")
+	public ValidatorSpecContext specContext(ValidatorProperties properties) throws IOException {
+		return new ValidatorSpecContext(properties.getResources());
+	}
 
 	/**
 	 * 校验回调
