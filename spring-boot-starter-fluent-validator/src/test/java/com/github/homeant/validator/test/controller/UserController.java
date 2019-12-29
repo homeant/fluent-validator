@@ -32,12 +32,12 @@ import com.github.homeant.validator.test.model.User;
 public class UserController {
 	
 	@PostMapping("add")
-	public ResponseEntity<Object> add(@FluentValid(groups = User.Create.class) @RequestBody User user){
+	public ResponseEntity<Object> add(@FluentValid @RequestBody User user){
 		return ResponseEntity.ok(user);
 	}
 
 	@PostMapping("add2")
-	public ResponseEntity<Object> add2(@FluentValid(groups = User.Update.class) @RequestBody User user){
+	public ResponseEntity<Object> add2(@FluentValid @RequestBody User user){
 		return ResponseEntity.ok(user);
 	}
 }

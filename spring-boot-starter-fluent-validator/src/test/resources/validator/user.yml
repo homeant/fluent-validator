@@ -1,8 +1,20 @@
-name: User
-rule:
-  actualType: com.github.homeant.validator.test.model.User
-  property:
-    userInfo:
-      actualType: com.github.homeant.validator.test.model.UserInfo
-      property:
-        age: NotBlank
+actualType: com.github.homeant.validator.test.model.User
+group:
+  - create:
+      expression: id == null
+  - update:
+      expression: id != null
+property:
+  userInfo:
+    actualType: com.github.homeant.validator.test.model.UserInfo
+    property:
+      age:
+        type: Not_Block
+        group: create
+  username:
+    type: Not_Block
+    expression: id != null
+    regexp: /d{15}
+    size:
+      min: 1
+      max: 10

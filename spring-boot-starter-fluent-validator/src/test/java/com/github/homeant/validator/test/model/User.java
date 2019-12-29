@@ -42,15 +42,6 @@ public class User implements Serializable{
 	 * 如果级联校验中有 {@link FluentValidate}，那么使用 {@link FluentValid}
 	 * 如果级联校验中没有 {@link FluentValidate},那么使用 {@link Valid}
 	 */
-	@NotNull(groups = Create.class)
 	@Valid
 	private UserInfo userInfo;
-
-	public interface Create{
-
-	}
-
-	public interface Update{
-
-	}
 }

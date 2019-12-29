@@ -39,6 +39,8 @@ public class ValidatorProperties {
 	
 	private Boolean enable = true;
 
+	private Integer hibernateDefaultErrorCode = 10000;
+
 	private String[] rulePaths = {"classpath*:validator/**/*.yml","classpath*:validator/**/*.yaml"};
 
 	public List<Resource> getResources() throws IOException {

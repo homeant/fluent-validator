@@ -46,6 +46,7 @@
 		<commons-collections4.version>4.4</commons-collections4.version>
 		<commons-lang3.version>3.9</commons-lang3.version>
 		<guave.version>28.1-jre</guave.version>
+		<json-path.version>2.4.0</json-path.version>
 	</properties>
 
 	<dependencyManagement>
@@ -101,6 +102,11 @@
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guave.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jayway.jsonpath</groupId>
+				<artifactId>json-path</artifactId>
+				<version>${json-path.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

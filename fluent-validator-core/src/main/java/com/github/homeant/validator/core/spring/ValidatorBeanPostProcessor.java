@@ -23,7 +23,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
-import com.baidu.unbiz.fluentvalidator.interceptor.FluentValidateInterceptor;
 
 import lombok.Getter;
 import lombok.Setter;
