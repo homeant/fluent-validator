@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.util.Map;
 
@@ -45,11 +47,18 @@ public class JsonPathTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
+	public void yamlTest(){
+		Yaml yaml = new Yaml(new Constructor(EntityRule.class));
+		EntityRule ret = yaml.load(this.getClass().getClassLoader()
+				.getResourceAsStream("validator/user.yml"));
+		log.debug("rule:{}",ret);
+	}
+
+	@Test
 	public void validatorTest(){
-		EntityRule rule = specContext.get(User.class);
-		Configuration configuration = Configuration.builder().jsonProvider(new JacksonJsonProvider()).build();
-		DocumentContext context = JsonPath.using(configuration).parse(rule.getProperty());
-		log.debug("result:{}",context.read("$.userInfo.property", Map.class));
+		EntityRule entityRule = specContext.get(User.class);
+		log.debug("rule:{}",entityRule);
+		log.debug("json:{}",JsonPath.parse(entityRule).json().toString());
 	}
 
 

@@ -6,16 +6,14 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * GroupSpec
+ * Extent
  *
  * @author junchen
- * @date 2019-12-29 09:34
+ * @date 2019-12-30 23:37
  */
 @Data
 @ToString
-public class GroupSpec implements Serializable {
-	/**
-	 * 条件表达式
-	 */
-	private String expression;
+public class Extent implements Serializable {
+	private Integer min;
+	private Integer max;
 }

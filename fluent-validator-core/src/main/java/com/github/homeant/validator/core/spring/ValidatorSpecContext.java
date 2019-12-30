@@ -5,15 +5,14 @@ import com.github.homeant.validator.core.domain.PropertySpec;
 import com.github.homeant.validator.core.util.MapUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.cglib.beans.BeanMap;
 import org.springframework.core.io.Resource;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,27 +40,17 @@ public class ValidatorSpecContext {
 				LoaderOptions options = new LoaderOptions();
 				options.setAllowDuplicateKeys(false);
 				try (InputStream inputStream = resource.getInputStream()) {
-					Iterator<Object> iterator = new Yaml(options).loadAll(inputStream).iterator();
+					Yaml yaml = new Yaml(new Constructor(EntityRule.class));
+					Iterator<Object> iterator = yaml.loadAll(inputStream).iterator();
 					while (iterator.hasNext()) {
-						Object objectResult = iterator.next();
-						Map<String, Object> map = this.asMap(objectResult);
-						if (map.containsKey("document")) {
-							List<Map> list = (List) map.get("document");
-							list.stream().forEach(r -> resultList.add(r));
-						} else {
-							resultList.add(map);
+						EntityRule rule = (EntityRule) iterator.next();
+						rule_cache.put(rule.getActualType(), rule);
+						Map<String, PropertySpec> property = rule.getProperty();
+						if(property!=null){
+							this.build(property, null);
+							property_cache.put(rule.getActualType(), MapUtils.flattenedMap((Map) property, null));
 						}
 					}
-					resultList.stream().forEach(r -> {
-						EntityRule rule = new EntityRule();
-						BeanMap beanMap = BeanMap.create(rule);
-						beanMap.putAll(r);
-						rule_cache.put(rule.getActualType(), rule);
-						if (r.containsKey("property")) {
-							Map property = (Map) r.get("property");
-							property_cache.put(rule.getActualType(), MapUtils.flattenedMap(property, null));
-						}
-					});
 				}
 			}
 		}
@@ -81,8 +70,10 @@ public class ValidatorSpecContext {
 	public void put(@NonNull EntityRule rule) {
 		if (StringUtils.isNotBlank(rule.getActualType())) {
 			rule_cache.put(rule.getActualType(), rule);
-			if (rule.getProperty() != null) {
-				property_cache.put(rule.getActualType(), MapUtils.flattenedMap((Map) rule.getProperty(), null));
+			Map<String, PropertySpec> property = rule.getProperty();
+			if (property != null) {
+				this.build(property, null);
+				property_cache.put(rule.getActualType(), MapUtils.flattenedMap((Map) property, null));
 			}
 		}
 	}
@@ -91,23 +82,18 @@ public class ValidatorSpecContext {
 		return rule_cache.containsKey(clazz.getCanonicalName());
 	}
 
-	private Map<String, Object> asMap(Object object) {
-		Map<String, Object> resultMap = new LinkedHashMap();
-		if (!(object instanceof Map)) {
-			resultMap.put("document", object);
-		} else if (object instanceof Map) {
-			Map<Object, Object> map = (Map) object;
-			map.forEach((key, value) -> {
-				if (value instanceof Map) {
-					value = this.asMap(value);
+	private void build(Map<String, PropertySpec> propertySpecMap, PropertySpec parentSpec) {
+		if (propertySpecMap != null) {
+			propertySpecMap.forEach((String k, PropertySpec v) -> {
+				v.setName(k);
+				if (parentSpec != null) {
+					v.setParentSpec(parentSpec);
 				}
-				if (key instanceof CharSequence) {
-					resultMap.put(key.toString(), value);
-				} else {
-					resultMap.put("[" + key.toString() + "]", value);
+				Map<String, PropertySpec> property = v.getProperty();
+				if (property != null) {
+					this.build(property, v);
 				}
 			});
 		}
-		return resultMap;
 	}
 }
