@@ -1,8 +1,6 @@
 package com.github.homeant.validator.core.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 @Data
 @ToString
-public class PropertySpec implements Serializable {
+public class Property implements Serializable {
 	/**
 	 * 类型
 	 */
@@ -27,7 +25,7 @@ public class PropertySpec implements Serializable {
 	 */
 	private String argumentType;
 
-	private Map<String, PropertySpec> property;
+	private Map<String, Property> property;
 
 	private List<String> group;
 
@@ -55,11 +53,5 @@ public class PropertySpec implements Serializable {
 
 	private String validator;
 
-
 	private String expression;
-
-
-	private PropertySpec parentSpec;
-
-	private String name;
 }

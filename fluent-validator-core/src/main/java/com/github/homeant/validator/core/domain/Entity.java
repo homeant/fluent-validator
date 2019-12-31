@@ -14,11 +14,11 @@ import java.util.Map;
  */
 @Data
 @ToString
-public class EntityRule implements Serializable {
+public class Entity implements Serializable {
 	private String actualType;
 
-	private Map<String,GroupSpec> group;
+	private Map<String, Group> group;
 
-	private Map<String,PropertySpec> property;
+	private Map<String,Property> property;
 
 }

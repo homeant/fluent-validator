@@ -16,7 +16,6 @@
 package com.github.homeant.validator.boot;
 
 
-import com.github.homeant.validator.core.CoreValidator;
 import com.github.homeant.validator.core.processor.FluentValidatorPostProcessor;
 import com.github.homeant.validator.core.spring.FluentValidateInterceptor;
 import com.github.homeant.validator.core.spring.ValidatorSpecContext;
@@ -92,12 +91,6 @@ public class ValidatorAutoConfiguration {
 		return new ValidatorSpecContext(properties.getResources());
 	}
 
-	@Bean
-	@ConditionalOnBean({ValidatorSpecContext.class})
-	public CoreValidator coreValidator(ValidatorSpecContext specContext){
-		return new CoreValidator(specContext);
-	}
-
 	/**
 	 * 校验回调
 	 *
@@ -112,13 +105,12 @@ public class ValidatorAutoConfiguration {
 	}
 
 	@Bean
-	@ConditionalOnBean({ValidateCallback.class,CoreValidator.class})
-	public FluentValidateInterceptor fluentValidateInterceptor(ValidateCallback callback,CoreValidator coreValidator) {
+	@ConditionalOnBean({ValidateCallback.class})
+	public FluentValidateInterceptor fluentValidateInterceptor(ValidateCallback callback) {
 		FluentValidateInterceptor validateInterceptor = new FluentValidateInterceptor();
 		validateInterceptor.setFluentValidatorPostProcessor(new FluentValidatorPostProcessor());
 		validateInterceptor.setCallback(callback);
 		validateInterceptor.setValidator(validator);
-		validateInterceptor.setCoreValidator(coreValidator);
 		validateInterceptor.setHibernateDefaultErrorCode(validatorProperties.getHibernateDefaultErrorCode());
 		return validateInterceptor;
 	}

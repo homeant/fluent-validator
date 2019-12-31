@@ -2,7 +2,7 @@ package com.github.homeant.validator.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.homeant.validator.ValidatorProperties;
-import com.github.homeant.validator.core.domain.EntityRule;
+import com.github.homeant.validator.core.domain.Entity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,10 +87,10 @@ public class YamlLoaderTest extends AbstractTestNGSpringContextTests {
 				e.printStackTrace();
 			}
 		});
-		EntityRule entityRule = new EntityRule();
-		BeanMap beanMap = BeanMap.create(entityRule);
+		Entity entity = new Entity();
+		BeanMap beanMap = BeanMap.create(entity);
 		beanMap.putAll(resultList.get(0));
-		log.debug("rule:{}",entityRule);
+		log.debug("rule:{}", entity);
 	}
 
 

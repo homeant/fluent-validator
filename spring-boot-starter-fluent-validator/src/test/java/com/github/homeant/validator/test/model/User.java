@@ -16,6 +16,7 @@
 package com.github.homeant.validator.test.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -44,4 +45,6 @@ public class User implements Serializable{
 	 */
 	@Valid
 	private UserInfo userInfo;
+
+	private List<String> address;
 }

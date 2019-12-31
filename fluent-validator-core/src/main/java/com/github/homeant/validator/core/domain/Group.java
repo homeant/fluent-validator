@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @ToString
-public class GroupSpec implements Serializable {
+public class Group implements Serializable {
 	/**
 	 * 条件表达式
 	 */

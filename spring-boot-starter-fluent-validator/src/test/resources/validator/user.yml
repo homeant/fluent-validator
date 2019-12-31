@@ -10,14 +10,21 @@ property:
     property:
       age:
         type:
-          - Not_Block
+          - Not_Null
         group:
           - create
   username:
     type:
       - Not_Block
+      - Not_Null
     expression: id != null
     regexp: /d{15}
     size:
       min: 1
       max: 10
+  password:
+    type:
+      - Not_Block
+  address:
+    actualType: java.util.List
+    argumentType: java.lang.String

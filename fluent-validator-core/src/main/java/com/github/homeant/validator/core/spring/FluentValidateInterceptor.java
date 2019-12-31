@@ -12,7 +12,6 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
-import com.github.homeant.validator.core.CoreValidator;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
@@ -78,7 +77,6 @@ public class FluentValidateInterceptor implements MethodInterceptor, Initializin
 	 */
 	private Validator validator;
 
-	private CoreValidator coreValidator;
 
 	/**
 	 * 语言地区，主要为Hibernate Validator使用
@@ -162,9 +160,6 @@ public class FluentValidateInterceptor implements MethodInterceptor, Initializin
 									.setIsFailFast(isFailFast);
 							if (fluentValidatorPostProcessor != null) {
 								fluentValidatorPostProcessor.postProcessBeforeDoValidate(fluentValidator, invocation);
-							}
-							if (coreValidator != null) {
-								fluentValidator.on(arguments[i], coreValidator);
 							}
 							ComplexResult result;
 							if (Collection.class.isAssignableFrom(parameterTypes[i])) {
@@ -280,9 +275,5 @@ public class FluentValidateInterceptor implements MethodInterceptor, Initializin
 	public void setFluentValidatorPostProcessor(
 			FluentValidatorPostProcessor fluentValidatorPostProcessor) {
 		this.fluentValidatorPostProcessor = fluentValidatorPostProcessor;
-	}
-
-	public void setCoreValidator(CoreValidator coreValidator) {
-		this.coreValidator = coreValidator;
 	}
 }
