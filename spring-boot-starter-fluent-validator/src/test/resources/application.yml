@@ -3,3 +3,6 @@ logging:
     com:
       github:
         homeant: DEBUG
+
+fluent-validator:
+  enable: true

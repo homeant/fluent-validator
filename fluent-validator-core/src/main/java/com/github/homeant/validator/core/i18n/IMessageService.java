@@ -13,11 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.i18n;
+package com.github.homeant.validator.core.i18n;
 
 import java.util.List;
 
-import com.github.homeant.i18n.domain.MessageResource;
+import com.github.homeant.validator.core.domain.MessageResource;
 
 
 /**

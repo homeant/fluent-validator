@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.callback;
+package com.github.homeant.validator.core.callback;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import com.baidu.unbiz.fluentvalidator.ValidateCallback;
 import com.baidu.unbiz.fluentvalidator.ValidationError;
 import com.baidu.unbiz.fluentvalidator.Validator;
 import com.baidu.unbiz.fluentvalidator.validator.element.ValidatorElementList;
-import com.github.homeant.validator.exception.ValidateFailException;
+import com.github.homeant.validator.core.exception.ValidateFailException;
 
 import lombok.extern.slf4j.Slf4j;
 

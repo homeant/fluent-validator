@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.spring.aop;
+package com.github.homeant.validator.core.spring;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -37,8 +37,12 @@ import org.springframework.util.Assert;
 public class ValidatorPointcutAdvisor extends AbstractPointcutAdvisor implements BeanFactoryAware{
 
 	private static final long serialVersionUID = 1532844349109915966L;
-	
-	//传入你自定义注解和MethodInterceptor实现
+
+	/**
+	 * 传入你自定义注解和MethodInterceptor实现
+	 * @param annotationType
+	 * @param interceptor
+	 */
     public ValidatorPointcutAdvisor (Class<? extends Annotation> annotationType,MethodInterceptor interceptor){
       this.advice = interceptor;
       this.pointcut = buildPointcut(annotationType);

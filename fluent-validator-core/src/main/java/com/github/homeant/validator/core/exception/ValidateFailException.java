@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.github.homeant.validator.exception;
+package com.github.homeant.validator.core.exception;
 
 import java.util.List;
 
@@ -21,7 +21,6 @@ import com.baidu.unbiz.fluentvalidator.ValidationError;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * 校验异常类

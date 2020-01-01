@@ -16,9 +16,13 @@
 package com.github.homeant.validator.test.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValid;
+import com.baidu.unbiz.fluentvalidator.annotation.FluentValidate;
 import lombok.Data;
 
 /**
@@ -30,8 +34,17 @@ public class User implements Serializable{
 	
 	private static final long serialVersionUID = -1847374915028769973L;
 
-	@NotNull(message="{NotBlank.message}")
+	@NotNull
 	private String username;
 	
 	private String password;
+
+	/**
+	 * 如果级联校验中有 {@link FluentValidate}，那么使用 {@link FluentValid}
+	 * 如果级联校验中没有 {@link FluentValidate},那么使用 {@link Valid}
+	 */
+	@Valid
+	private UserInfo userInfo;
+
+	private List<String> address;
 }
