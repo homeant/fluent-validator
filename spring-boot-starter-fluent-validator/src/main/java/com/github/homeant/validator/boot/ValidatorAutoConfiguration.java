@@ -18,7 +18,6 @@ package com.github.homeant.validator.boot;
 
 import com.github.homeant.validator.core.processor.FluentValidatorPostProcessor;
 import com.github.homeant.validator.core.spring.FluentValidateInterceptor;
-import com.github.homeant.validator.core.spring.ValidatorSpecContext;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -42,7 +41,6 @@ import com.github.homeant.validator.core.i18n.MessageDynamicResource;
 import lombok.Data;
 
 import javax.validation.Validator;
-import java.io.IOException;
 
 /**
  * validator auto config
@@ -84,11 +82,6 @@ public class ValidatorAutoConfiguration {
 		MessageSupport support = new MessageSupport();
 		support.setMessageSource(messageSource);
 		return support;
-	}
-
-	@Bean(initMethod = "init")
-	public ValidatorSpecContext specContext(ValidatorProperties properties) throws IOException {
-		return new ValidatorSpecContext(properties.getResources());
 	}
 
 	/**
